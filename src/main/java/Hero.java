@@ -11,4 +11,19 @@ public class Hero {
         weakness=weakness;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getSuperPower() {
+        return superPower;
+    }
+
+    public String getWeakness() {
+        return weakness;
+    }
 }
