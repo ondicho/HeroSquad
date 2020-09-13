@@ -1,0 +1,27 @@
+{{#partial "content"}}
+
+    <form action="/heroes/new" method="post">
+        <p> Calc My Rec </p>
+        <label for="height">Height</label>
+        <input id="height" name="height" type="text">
+
+        <label for="width">Width</label>
+        <input id="width" name="width" type="text">
+
+        <button type="submit" class="btn btn-default">Go!</button>
+    </form>
+
+    {{#each myRectangles }}
+        <p><h3>Your rectangle's height is {{ height }}</h3></p>
+        <p><h3>Your rectangle's width is {{ width }}</h3></p>
+
+        {{#if shape }}
+            <p><h3>Your rectangle is a square!</h3></p>
+        {{else}}
+            <p><h3>Your rectangle isn't a square!</h3></p>
+        {{/if}}
+    {{/each }}
+
+{{/partial}}
+
+{{> layout.hbs}}
