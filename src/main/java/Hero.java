@@ -1,29 +1,38 @@
+import java.util.ArrayList;
+
 public class Hero {
-    private String name;
-    private int age;
-    private String superPower;
-    private String weakness;
+    private String mName;
+    private int mAge;
+    private String mSuperPower;
+    private String mWeakness;
+    private static ArrayList<Hero> mInstances = new ArrayList<>();
+
 
     public Hero(String name,int age,String superPower,String weakness){
-        name=name;
-        age=age;
-        superPower=superPower;
-        weakness=weakness;
+        mName=name;
+        mAge=age;
+        mSuperPower=superPower;
+        mWeakness=weakness;
+        mInstances.add(this);
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public int getAge() {
-        return age;
+        return mAge;
     }
 
     public String getSuperPower() {
-        return superPower;
+        return mSuperPower;
     }
 
     public String getWeakness() {
-        return weakness;
+        return mWeakness;
+    }
+
+    public static ArrayList<Hero> getAll() {
+        return mInstances;
     }
 }

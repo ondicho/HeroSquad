@@ -1,29 +1,29 @@
 public class Squad {
-    private String name;
-    private String cause;
-    private int maxSize;
-    private Hero squadList;
+    private String mSquadName;
+    private String mCause;
+    private int mMaxSize;
+    private Hero mSquadList;
 
-    public Squad(String name, String cause, int maxSize, Hero squadList){
-        name=name;
-        cause=cause;
-        maxSize=maxSize;
+    public Squad(String squadName, String cause, int maxSize, Hero squadList){
+        mSquadName=squadName;
+        mCause=cause;
+        mMaxSize=maxSize;
 
     }
 
     public String getName() {
-        return name;
+        return mSquadName;
     }
 
     public String getCause() {
-        return cause;
+        return mCause;
     }
 
     public Hero getSquadList() {
-        return squadList;
+        return mSquadList;
     }
 
     public int getMaxSize() {
-        return maxSize;
+        return mMaxSize;
     }
 }
