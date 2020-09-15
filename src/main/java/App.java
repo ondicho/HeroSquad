@@ -6,13 +6,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
+import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class App {
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
     public static void main(String[] args) {
         enableDebugScreen();
+        staticFileLocation("/public");
         get("/", (req, res) -> {
 //            Hero firstHero = new Hero("superman", 123, "flying", "kryptonite");
 
@@ -23,33 +30,30 @@ public class App {
             }, new HandlebarsTemplateEngine());
 
 
-        post("/heroes/new", (request, response) -> {
+        post("/heroes/new", (req, res) -> {
             Map<String, Object> model = new HashMap<String, Object>();
 
-            String heroName= request.queryParams("name");
-            request.session().attribute("name", heroName);
-            model.put("username", heroName);
+           String name=req.queryParams("name");
+           int age = Integer.parseInt(req.queryParams("age"));
+           String superPower=req.queryParams("superPower");
+           String weakness=req.queryParams("weakness");
 
-            String heroAge= request.queryParams("age");
-            request.session().attribute("age", heroAge);
-            model.put("age", heroAge);
-
-            String heroSuperPower= request.queryParams("superPower");
-            request.session().attribute("superPower", heroSuperPower);
-            model.put("superPower",heroSuperPower);
-
-            String heroWeakness= request.queryParams("weakness");
-            request.session().attribute("weakness", heroWeakness);
-            model.put("weakness",heroWeakness);
+           Hero myHero=new Hero(name,age,superPower,weakness);
+           model.put("myHero", myHero);
 
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/squad/new", (req, res) -> {
-            Map<String, ArrayList<Squad>> model = new HashMap<>();
-//            ArrayList myHeroArrayList = Hero.getAll();
-//            Map<String, ArrayList<Hero>> model = new HashMap<>();
-//            model.put("heroSquad", myHeroArrayList);
+            Map<String, Object> model = new HashMap<>();
+
+           String squadName=req.queryParams("squadName");
+           String cause=req.queryParams("cause");
+           int maxSize = Integer.parseInt(req.queryParams("size"));
+
+           Squad heroSquad=new Squad(squadName,cause,maxSize);
+           model.put("heroSquad", heroSquad);
+
             return new ModelAndView(model, "/heroSquad.hbs");
         }, new HandlebarsTemplateEngine());
     }
