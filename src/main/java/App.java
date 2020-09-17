@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
+//import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class App {
     static int getHerokuAssignedPort() {
@@ -18,7 +18,8 @@ public class App {
         return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
     public static void main(String[] args) {
-        enableDebugScreen();
+        port(getHerokuAssignedPort());
+//        enableDebugScreen();
         staticFileLocation("/public");
         get("/", (req, res) -> {
 //            Hero firstHero = new Hero("superman", 123, "flying", "kryptonite");

@@ -14,6 +14,6 @@ Open HeroSquad folder using intellij Idea<br>
 Open the terminal and navigate to the java directory using the cd command in the terminal[cd src/main/java/]<br>
 run the [gradle run] command to run the app<br>
 <h2>live link</h2>
-
+(https://ondichoalherosquad.herokuapp.com/)
 <h2>copyright</h2>
 The project has a MIT license and any user is free to change,edit and publish this code.
